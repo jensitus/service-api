@@ -83,11 +83,6 @@ RSpec.describe 'Todos API', type: :request do
         expect(response).to have_http_status(422)
       end
 
-      # it 'returns a validation failure message' do
-      #   expect(response.body)
-      #       .to match(/Validation failed: Created by can't be blank/)
-      # end
-
       it 'returns a validation failure message' do
         expect(json['message'])
             .to match(/Validation failed: Title can't be blank/)

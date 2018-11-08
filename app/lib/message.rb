@@ -27,7 +27,15 @@ class Message
     'Account could not be created'
   end
 
+  def self.pw_confirmation_can_not_be_blank
+    'Account could not be created: Password Confirmation must not be blank'
+  end
+
   def self.expired_token
     'Sorry, your token has expired. Please login to continue.'
+  end
+
+  def self.pw_to_short
+    'Password must be at least 6 characters'
   end
 end

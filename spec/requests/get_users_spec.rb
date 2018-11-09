@@ -10,7 +10,6 @@ RSpec.describe 'Users API', type: :request do
     context 'when valid request' do
       before {get '/users/index', params: {}, headers: headers}
       it 'returns list of users' do
-        puts json.inspect
         expect(json).not_to be_empty
         expect(json.size).to eq(10)
       end
@@ -21,9 +20,6 @@ RSpec.describe 'Users API', type: :request do
     context 'when valid request' do
       before {get "/users/#{user_id}", params: {}, headers: headers}
       it 'returns single user' do
-        # expect(json).not_to be_empty
-        # expect(json['id']).to eq(user_id)
-        puts json.inspect
         expect(response).to have_http_status(200)
       end
     end

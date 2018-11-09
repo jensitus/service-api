@@ -16,6 +16,8 @@
 # ignore intellij
 .idea/
 /.idea/
+/db/
+db/
 
 # Ignore uploaded files in development
 /storage/*

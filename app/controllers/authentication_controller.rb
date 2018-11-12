@@ -6,9 +6,6 @@ class AuthenticationController < ApplicationController
   def authenticate
     auth_token = AuthenticateUser.new(auth_params[:email], auth_params[:password]).call
     user = AuthenticateUser.new(auth_params[:email], auth_params[:password]).getUser
-    puts "user in auth_controller: "
-    puts user.inspect
-    # user = AuthenticateUser.new(auth_params[:email], auth_params[:password]).call
     json_response(user: user, auth_token: auth_token)
   end
 

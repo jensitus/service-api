@@ -15,14 +15,6 @@ class UsersController < ApplicationController
       response = {message: Message.pw_confirmation_can_not_be_blank}
       return json_response(response, :unprocessable_entity)
     end
-
-    # because of failing test we do this a bit later:
-
-    # if user_params[:password].length < 6
-    #   response = { message: Message.pw_to_short }
-    #   return json_response(response, :forbidden)
-    # end
-
     user = User.create!(user_params)
     auth_token = AuthenticateUser.new(user.email, user.password).call
     response = {message: Message.account_created, auth_token: auth_token}

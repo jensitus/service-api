@@ -3,7 +3,7 @@ FactoryBot.define do
     id { Faker::IDNumber }
     name { Faker::Name.name }
     email { Faker::Internet.email } #'foo@bar.com'
-    password 'foobar'
+    password { 'foobar' }
   end
 
   # factory :user_for_list do

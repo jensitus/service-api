@@ -10,4 +10,8 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: {case_sensitive: false}, format: {with: VALID_EMAIL_REGEX}
   validates :name, presence: true, length: {minimum: 4, maximum: 30}, uniqueness: true
 
+  def self.new_token
+    SecureRandom.urlsafe_base64
+  end
+
 end

@@ -15,6 +15,7 @@ class UsersController < ApplicationController
       response = {message: Message.pw_confirmation_can_not_be_blank}
       return json_response(response, :unprocessable_entity)
     end
+    user_params[:email] = user_params[:email].downcase!
     user = User.create!(user_params)
     auth_token = AuthenticateUser.new(user.email, user.password).call
     response = {message: Message.account_created, auth_token: auth_token}

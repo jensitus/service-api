@@ -16,8 +16,10 @@
 # ignore intellij
 .idea/
 /.idea/
-/db/
-db/
+# db stuff
+/db/test.sqlite3
+/db/schema.rb
+
 
 # Ignore uploaded files in development
 /storage/*

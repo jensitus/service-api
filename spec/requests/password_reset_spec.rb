@@ -33,6 +33,9 @@ RSpec.describe 'Password Reset API', type: :request do
 
   describe "GET #edit" do
     context "when valid request" do
+
+      # I really don't how get this test working, because of the non available token
+      #
       # before {get "/password_resets/#{token}/edit", params: edit_params, headers: headers}
       # it "returns http success" do
       #   # puts edit_params.inspect

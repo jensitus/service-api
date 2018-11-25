@@ -7,11 +7,6 @@ class ApplicationController < ActionController::API
 
   attr_reader :current_user
 
-  rescue_from StandardError do |e|
-    print e
-    puts e.inspect
-  end
-
   private
 
   # Check for valid request token and return user

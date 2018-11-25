@@ -35,5 +35,8 @@ module ServiceApi
     # Logger
     # config.logger = Logger.new(STDOUT)
 
+    config.active_job.queue_adapter = :async
+
+
   end
 end

@@ -27,6 +27,10 @@ class Message
     'Account could not be created'
   end
 
+  def self.pw_can_not_be_blank
+    "Password can't be empty"
+  end
+
   def self.pw_confirmation_can_not_be_blank
     'Account could not be created: Password Confirmation must not be blank'
   end
@@ -38,4 +42,17 @@ class Message
   def self.pw_to_short
     'Password must be at least 6 characters'
   end
+
+  def self.reset_password_instructions_sent
+    "We've sent you an email with instructions how to reset your password, check your mail!"
+  end
+
+  def self.email_not_found
+    'Email address not found'
+  end
+
+  def self.we_tried_real_hard
+    "We tried real hard to change your password"
+  end
+
 end

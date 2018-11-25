@@ -20,10 +20,6 @@ class AuthenticateUser
   # verify user credentials
   def user
     user = User.find_by(email: email)
-    # puts "user: "
-    # puts user.inspect
-    # puts "user.authenticate(password)"
-    # puts user.authenticate(password).inspect
     return user if user && user.authenticate(password)
     # raise Authentication error if credentials are invalid
     raise(ExceptionHandler::AuthenticationError, Message.invalid_credentials)

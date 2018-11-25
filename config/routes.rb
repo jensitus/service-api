@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'password_resets/new'
-  get 'password_resets/edit'
+  # get 'password_resets/new'
+  # get 'password_resets/edit'
   resources :todos do
     resources :items
   end
@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   get 'users/index', to: 'users#index'
   get 'users/:id', to: 'users#show', as: 'user'
   # resources :users
-  resources :password_resets, only: [:new, :create, :edit, :update]
+  resources :password_resets, only: [:new, :create, :edit, :update], param: :token
 end

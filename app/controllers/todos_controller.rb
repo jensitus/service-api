@@ -9,12 +9,14 @@ class TodosController < ApplicationController
 
   # POST /todos
   def create
-    @todo = current_user.todos.create!(todo_params)
+    @todo = current_user.todos.create!(title: todo_params['title'], created_by: current_user.id)
     json_response(@todo, :created)
   end
 
   # GET /todos/:id
   def show
+    puts @current_user
+    puts @user
     json_response(@todo)
   end
 

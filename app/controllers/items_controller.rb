@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_todo
   before_action :set_todo_item, only: [:show, :update, :destroy]
+  before_action :todo_user, only: :index
 
   # GET /todos/:todo_id/items
   def index
@@ -43,4 +44,14 @@ class ItemsController < ApplicationController
   def set_todo_item
     @item = @todo.items.find_by!(id: params[:id]) if @todo
   end
+
+  def todo_user
+    puts @current_user.inspect
+    puts '***********************'
+    puts @todo.users.inspect
+    if !@todo.users.include?(@current_user)
+      json_response(Message.unauthorized, 403)
+    end
+  end
+
 end

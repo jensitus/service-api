@@ -12,9 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2018_11_27_204523) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.boolean "done"
@@ -32,8 +29,8 @@ ActiveRecord::Schema.define(version: 2018_11_27_204523) do
   end
 
   create_table "todos_users", id: false, force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "todo_id", null: false
+    t.integer "user_id", null: false
+    t.integer "todo_id", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -49,5 +46,4 @@ ActiveRecord::Schema.define(version: 2018_11_27_204523) do
     t.index ["name"], name: "index_users_on_name", unique: true
   end
 
-  add_foreign_key "items", "todos"
 end

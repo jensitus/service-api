@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: :show
-  skip_before_action :authorize_request, only: [:create]
+  skip_before_action :authorize_request, only: [:create, :check_auth_token]
+  # before_action :check_auth_token, only: :check_auth_token
 
   # GET /users
   def index
@@ -26,6 +27,12 @@ class UsersController < ApplicationController
 
   end
 
+  # POST /users/check_auth_token
+  def check_auth_token
+    token_valid = JsonWebToken.decode auth_token_params
+    json_response(token_valid)
+  end
+
   private
 
   def user_params
@@ -35,6 +42,14 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
     json_response(@user)
+  end
+
+  def auth_token_params
+    params[:token]
+  end
+
+  def check_the_auth_token(token)
+    JsonWebToken.decode(token)
   end
 
 end

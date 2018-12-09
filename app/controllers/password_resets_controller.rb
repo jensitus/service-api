@@ -45,7 +45,6 @@ class PasswordResetsController < ApplicationController
   private
 
   def get_user
-    puts reset_params[:email].inspect
     @user = User.find_by(email: reset_params[:email])
   end
 

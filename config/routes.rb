@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # get 'password_resets/new'
   # get 'password_resets/edit'
+  post 'users/check_auth_token', to: 'users#check_auth_token'
   resources :todos do
     resources :items
   end

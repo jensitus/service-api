@@ -1,5 +1,5 @@
 class TodosController < ApplicationController
-  before_action :set_todo, only: [:show, :update, :destroy]
+  before_action :set_todo, only: [:show, :update, :destroy, :add_user]
 
   # GET /todos
   def index
@@ -32,6 +32,13 @@ class TodosController < ApplicationController
     head :no_content
   end
 
+  # POST /todos/:id/add_user
+  def add_user
+    user = User.find add_user_params['user_id']
+    @todo.users.push user
+    head :success
+  end
+
   private
 
   def todo_params
@@ -42,4 +49,9 @@ class TodosController < ApplicationController
   def set_todo
     @todo = Todo.find(params[:id])
   end
+
+  def add_user_params
+    params.permit(:user_id)
+  end
+
 end

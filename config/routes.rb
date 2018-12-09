@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # get 'password_resets/new'
   # get 'password_resets/edit'
+  post 'users/check_auth_token', to: 'users#check_auth_token'
   resources :todos do
     resources :items
   end
@@ -10,4 +11,5 @@ Rails.application.routes.draw do
   get 'users/:id', to: 'users#show', as: 'user'
   # resources :users
   resources :password_resets, only: [:new, :create, :edit, :update], param: :token
+  post 'todos/:id/add_user', to: 'todos#add_user'
 end

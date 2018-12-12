@@ -1,5 +1,5 @@
 class TodosController < ApplicationController
-  before_action :set_todo, only: [:show, :update, :destroy, :add_user]
+  before_action :set_todo, only: [:show, :update, :destroy, :add_user, :users]
 
   # GET /todos
   def index
@@ -34,9 +34,14 @@ class TodosController < ApplicationController
 
   # POST /todos/:id/add_user
   def add_user
-    user = User.find add_user_params['user_id']
+    user = User.find add_user_params
     @todo.users.push user
-    head :success
+    json_response(message: 'jepp', :status => :success)
+  end
+
+  # GET /todos/:id/users
+  def users
+    json_response(@todo.users)
   end
 
   private
@@ -51,7 +56,7 @@ class TodosController < ApplicationController
   end
 
   def add_user_params
-    params.permit(:user_id)
+    params[:user_id]
   end
 
 end

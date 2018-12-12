@@ -18,6 +18,10 @@ module ExceptionHandler
       json_response({ message: e.message }, :not_found)
     end
 
+    rescue_from ActiveRecord::RecordNotUnique do |e|
+      json_response({ message: e.message }, :internal_server_error)
+    end
+
   end
 
   private

@@ -86,6 +86,6 @@ test:
 #
 production:
   <<: *default
-  database: service-api_production
-  username: service-api
-  password: <%= ENV['SERVICE-API_DATABASE_PASSWORD'] %>
+  database: <%= ENV["SERVICE_B_DEV_DB"] %>
+  # username: service-api
+  # password: <%= ENV['SERVICE-API_DATABASE_PASSWORD'] %>

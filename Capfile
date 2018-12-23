@@ -7,8 +7,8 @@ require "capistrano/deploy"
 # Load the SCM plugin appropriate to your project:
 # (...)
 # or
-# require "capistrano/scm/git"
-# install_plugin Capistrano::SCM::Git
+require "capistrano/scm/git"
+install_plugin Capistrano::SCM::Git
 
 # Include tasks from other gems included in your Gemfile
 #

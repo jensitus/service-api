@@ -63,8 +63,13 @@ namespace :deploy do
     end
   end
 
+  desc 'Compile Assets'
+  task :compile_assets do
+    # do nothing
+  end
+
   before :starting,     :check_revision
-  # after  :finishing,    :compile_assets
+  after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
 end

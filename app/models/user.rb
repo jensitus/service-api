@@ -31,9 +31,6 @@ class User < ApplicationRecord
   end
 
   def send_password_reset_email(reset_token)
-    puts "user_name: ENV['MAIL_USER']"
-    puts ENV['MAIL_USER']
-    puts ENV['MAIL_PW']
     UserMailer.password_reset(self, reset_token).deliver_now
   end
 
@@ -42,7 +39,6 @@ class User < ApplicationRecord
   end
 
   def check_token_valid(token)
-    puts token
     BCrypt::Password.new(reset_digest).is_password?(token)
   end
 

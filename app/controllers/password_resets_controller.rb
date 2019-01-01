@@ -34,6 +34,7 @@ class PasswordResetsController < ApplicationController
   end
 
   def update
+    puts reset_params.inspect
     if reset_params[:password].empty?
       response = {message: Message.pw_can_not_be_blank}
     elsif @user.update_attributes(reset_params)

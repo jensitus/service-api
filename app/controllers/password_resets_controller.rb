@@ -60,7 +60,7 @@ class PasswordResetsController < ApplicationController
 
   def check_expiration
     if @user.password_reset_expired
-      json_response(:status => 204)
+      json_response(message: 'yess', :status => 204)
       # else
       #   json_response(:status => 200)
     end

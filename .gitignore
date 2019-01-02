@@ -18,7 +18,7 @@
 /.idea/
 # db stuff
 /db/test.sqlite3
-# /db/schema.rb
+/db/schema.rb
 
 
 # Ignore uploaded files in development

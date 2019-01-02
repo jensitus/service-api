@@ -3,6 +3,7 @@ class PasswordResetsController < ApplicationController
   skip_before_action :authorize_request, only: [:new, :edit, :create, :update]
   before_action :forgot_params, only: [:create]
   before_action :reset_params, only: [:edit, :update]
+  before_action :update_reset_params, only: [:update]
   before_action :get_user, only: [:edit, :update]
   before_action :check_expiration, only: [:edit, :update]
   before_action :check_token, only: [:edit, :update]
@@ -37,7 +38,7 @@ class PasswordResetsController < ApplicationController
     puts reset_params.inspect
     if reset_params[:password].empty?
       response = {message: Message.pw_can_not_be_blank}
-    elsif @user.update_attributes(reset_params)
+    elsif @user.update_attributes(update_reset_params)
       response = {message: Message.we_tried_real_hard}
     end
     json_response(response)
@@ -47,6 +48,9 @@ class PasswordResetsController < ApplicationController
 
   def get_user
     @user = User.find_by(email: reset_params[:email])
+    if @user.nil?
+      json_response(message: Message.not_found(reset_params[:email]), status: 404)
+    end
   end
 
   def forgot_params
@@ -56,6 +60,10 @@ class PasswordResetsController < ApplicationController
   def reset_params
     params.permit(:email, :password, :password_confirmation, :token, :password_reset)
     # params.permit(:email, :password, :password_confirmation)
+  end
+
+  def update_reset_params
+    params.permit(:email, :password, :password_confirmation)
   end
 
   def check_expiration

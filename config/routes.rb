@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   get 'users/:id', to: 'users#show', as: 'user'
   # resources :users
   resources :password_resets, only: [:new, :create, :edit, :update], param: :token
+  post 'todos/:id/add_user', to: 'todos#add_user'
+  get 'todos/:id/users', to: 'todos#users'
 end

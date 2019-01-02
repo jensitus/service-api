@@ -35,6 +35,7 @@ class PasswordResetsController < ApplicationController
   end
 
   def update
+    puts reset_params.inspect
     if reset_params[:password].empty?
       response = {message: Message.pw_can_not_be_blank}
     elsif @user.update_attributes(update_reset_params)
@@ -67,7 +68,7 @@ class PasswordResetsController < ApplicationController
 
   def check_expiration
     if @user.password_reset_expired
-      json_response(:status => 204)
+      json_response(message: 'yess', :status => 204)
       # else
       #   json_response(:status => 200)
     end

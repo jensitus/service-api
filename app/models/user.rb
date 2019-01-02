@@ -5,7 +5,8 @@ class User < ApplicationRecord
   # before_save :downcase_email
   attr_accessor :reset_token
 
-  has_many :todos, foreign_key: :created_by
+  # has_many :todos, foreign_key: :created_by
+  has_and_belongs_to_many :todos
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

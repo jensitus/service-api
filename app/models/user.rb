@@ -38,7 +38,6 @@ class User < ApplicationRecord
   end
 
   def check_token_valid(token)
-    puts token
     BCrypt::Password.new(reset_digest).is_password?(token)
   end
 

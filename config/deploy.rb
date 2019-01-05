@@ -56,6 +56,13 @@ namespace :deploy do
     end
   end
 
+  desc 'Stop Puma'
+  task :stop do
+    on roles(:app) do
+      invoke('puma:stop')
+    end
+  end
+
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
@@ -69,6 +76,7 @@ namespace :deploy do
   end
 
   before :starting,     :check_revision
+  before :starting,     :stop
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart

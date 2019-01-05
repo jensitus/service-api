@@ -18,10 +18,6 @@ class UserMailer < ApplicationMailer
   #
   def password_reset(user, reset_token)
     puts reset_token.inspect
-    puts "user_name:"
-    puts ENV["MAIL_USER"]
-    puts "password:"
-    puts ENV["MAIL_PW"]
     @reset_token = reset_token
     @greeting = "Hi " + user.name
     @user = user

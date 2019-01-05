@@ -22,6 +22,7 @@ class PasswordResetsController < ApplicationController
       puts "SERVICE_B_DEV_DB"
       puts ENV['SERVICE_B_DEV_DB']
       puts ENV['MAIL_USER']
+      puts ENV['JENS']
       PasswordResetMailJob.perform_later(@user, reset_token)
       # @user.send_password_reset_email
       response = {message: Message.reset_password_instructions_sent}

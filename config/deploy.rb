@@ -1,10 +1,10 @@
 # config valid for current version and patch releases of Capistrano
 # lock "~> 3.10.2"
-server '84.39.96.50', port: 22, roles: [:web, :app, :db], primary: true
+server '84.39.99.31', port: 22, roles: [:web, :app, :db], primary: true
 
 set :application, 'service-api'
 set :repo_url, 'git@github.com:jensitus/service-api.git'
-set :user, 'service'
+set :user, 'jens'
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
 

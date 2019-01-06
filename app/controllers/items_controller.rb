@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
 
   # GET /todos/:todo_id/items
   def index
-    json_response(@todo.items)
+    json_response(@todo.items.order(:id))
   end
 
   # GET /todos/:todo_id/items/:id
@@ -46,9 +46,6 @@ class ItemsController < ApplicationController
   end
 
   def todo_user
-    puts @current_user.inspect
-    puts '***********************'
-    puts @todo.users.inspect
     if !@todo.users.include?(@current_user)
       json_response(Message.unauthorized, 403)
     end

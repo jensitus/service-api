@@ -46,9 +46,6 @@ class ItemsController < ApplicationController
   end
 
   def todo_user
-    puts @current_user.inspect
-    puts '***********************'
-    puts @todo.users.inspect
     if !@todo.users.include?(@current_user)
       json_response(Message.unauthorized, 403)
     end

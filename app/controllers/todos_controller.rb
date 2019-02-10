@@ -15,8 +15,6 @@ class TodosController < ApplicationController
 
   # GET /todos/:id
   def show
-    puts @current_user
-    puts @user
     json_response(@todo)
   end
 

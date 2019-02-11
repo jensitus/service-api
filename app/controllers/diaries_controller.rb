@@ -2,7 +2,7 @@ class DiariesController < ApplicationController
   before_action :set_diary, only: [:show, :update, :destroy]
 
   def index
-    @diaries = current_user.diaries
+    @diaries = current_user.diaries.order(created_at: :desc)
     json_response(@diaries)
   end
 

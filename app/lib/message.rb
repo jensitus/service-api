@@ -55,4 +55,8 @@ class Message
     "We tried real hard to change your password"
   end
 
+  def self.password_confirmation_does_not_match
+    "Password confirmation doesn't match Password"
+  end
+
 end

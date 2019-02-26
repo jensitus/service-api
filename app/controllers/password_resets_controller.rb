@@ -35,7 +35,6 @@ class PasswordResetsController < ApplicationController
   end
 
   def update
-    puts reset_params.inspect
     pw = reset_params['password']
     pw_conf = reset_params['password_confirmation']
     if pw != pw_conf

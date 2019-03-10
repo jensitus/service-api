@@ -24,7 +24,27 @@ class UsersController < ApplicationController
   end
 
   def show
+    if @user.avatar.attached?
+      avatar = url_for(@user.avatar)
+    else
+      avatar = 'https://secure.gravatar.com/avatar/4c7b70f53cb61a86fccfe15870f04988.jpg?r=PG&s=120'
+    end
+    user = {
+        id: @user.id,
+        name: @user.name,
+        email: @user.email,
+        avatar: avatar
+    }
+    json_response(user)
+  end
 
+  def update
+
+  end
+
+  def updateavatar
+    u = User.find(updateavatar_params['id'])
+    u.avatar.attach(updateavatar_params['avatar'])
   end
 
   # POST /users/check_auth_token
@@ -35,13 +55,16 @@ class UsersController < ApplicationController
 
   private
 
+  def updateavatar_params
+    params.permit(:avatar, :id)
+  end
+
   def user_params
     params.permit(:name, :email, :password, :password_confirmation)
   end
 
   def set_user
     @user = User.find(params[:id])
-    json_response(@user)
   end
 
   def auth_token_params

@@ -2,12 +2,15 @@ class User < ApplicationRecord
   # encrypt password
   has_secure_password
 
+  has_one_attached :avatar
+
   # before_save :downcase_email
   attr_accessor :reset_token
 
   # has_many :todos, foreign_key: :created_by
   has_and_belongs_to_many :todos
   has_many :diaries
+  has_many :images
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

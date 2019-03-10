@@ -20,6 +20,8 @@
 /db/test.sqlite3
 /db/schema.rb
 
+public/uploads
+
 
 # Ignore uploaded files in development
 /storage/*

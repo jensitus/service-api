@@ -3,13 +3,13 @@ class TodosController < ApplicationController
 
   # GET /todos
   def index
-    @todos = current_user.todos
+    @todos = current_user.todos.order(created_at: :asc)
     json_response(@todos)
   end
 
   # POST /todos
   def create
-    @todo = current_user.todos.create!(title: todo_params['title'], created_by: current_user.id)
+    @todo = current_user.todos.create!(title: todo_params['title'], done: false, created_by: current_user.id)
     json_response(@todo, :created)
   end
 
@@ -46,7 +46,7 @@ class TodosController < ApplicationController
 
   def todo_params
     # whitelist params
-    params.permit(:title)
+    params.require(:todo).permit(:title, :done)
   end
 
   def set_todo

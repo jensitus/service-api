@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Todos API', type: :request do
   let(:user) { create(:user) }
-  let!(:todos) { create_list(:todo, 20, user_id: user.id) }
+  let!(:todos) { create_list(:todo, 20, created_by: user.id) }
   let(:headers) { valid_headers }
   let(:todo_id) { todos.first.id }
 

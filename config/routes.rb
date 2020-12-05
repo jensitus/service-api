@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :bookmarks
   post 'users/check_auth_token', to: 'users#check_auth_token'
   resources :todos do
     resources :items

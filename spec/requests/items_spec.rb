@@ -1,19 +1,21 @@
 require 'rails_helper'
 
-RSpec.describe 'Items API' do
+RSpec.describe 'Items API', type: :request do
   let(:user) { create(:user) }
   # Initialize the test data
-  let!(:todo) { create(:todo, user_id: user.id) }
+  let!(:todo) { create(:todo, created_by: user.id) }
   let!(:items) { create_list(:item, 20, todo_id: todo.id) }
   let(:todo_id) { todo.id }
   let(:id) { items.first.id }
   let(:headers) { valid_headers }
 
+
   # Test suite for GET /todos/:todo_id/items
-  describe 'GET /todos/:todo_id/items' do
+  describe 'GET #index' do
+    before { todo.users << user }
     before { get "/todos/#{todo_id}/items", params: {}, headers: headers }
 
-    context 'when todo exists' do
+    context 'when items exists' do
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
       end

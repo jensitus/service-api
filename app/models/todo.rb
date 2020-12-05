@@ -5,6 +5,6 @@ class Todo < ApplicationRecord
   has_and_belongs_to_many :users
 
   # validations
-  validates_presence_of :title, :user_id
+  validates_presence_of :title, :created_by
 
 end

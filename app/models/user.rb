@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :todos
   has_many :diaries
   has_many :images
+  has_many :bookmarks
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

@@ -9,7 +9,9 @@ class BookmarksController < ApplicationController
           id: b.id,
           url: decrypt_and_verify(b.url),
           description: decrypt_and_verify(b.description),
-          user_id: b.user_id
+          user_id: b.user_id,
+          created_at: b.created_at,
+          updated_at: b.updated_at
       }
       @bookmarks << bookmark
     end
@@ -22,7 +24,9 @@ class BookmarksController < ApplicationController
         id: @bookmark.id,
         url: decrypt_and_verify(@bookmark.url),
         description: decrypt_and_verify(@bookmark.description),
-        user_id: @bookmark.user_id
+        user_id: @bookmark.user_id,
+        created_at: @bookmark.created_at,
+        updated_at: @bookmark.updated_at
     }
     render json: bookmark
   end

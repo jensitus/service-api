@@ -3,19 +3,35 @@ class BookmarksController < ApplicationController
 
   # GET /bookmarks
   def index
-    @bookmarks = Bookmark.all
-
+    @bookmarks = []
+    Bookmark.all.each do |b|
+      bookmark = {
+          id: b.id,
+          url: decrypt_and_verify(b.url),
+          description: decrypt_and_verify(b.description),
+          user_id: b.user_id
+      }
+      @bookmarks << bookmark
+    end
     render json: @bookmarks
   end
 
   # GET /bookmarks/1
   def show
-    render json: @bookmark
+    bookmark = {
+        id: @bookmark.id,
+        url: decrypt_and_verify(@bookmark.url),
+        description: decrypt_and_verify(@bookmark.description),
+        user_id: @bookmark.user_id
+    }
+    render json: bookmark
   end
 
   # POST /bookmarks
   def create
-    @bookmark = Bookmark.new(bookmark_params)
+    encrypted_url = encrypt_and_sign(bookmark_params['url'])
+    encrypted_description = encrypt_and_sign(bookmark_params['description'])
+    @bookmark = current_user.bookmarks.create!(url: encrypted_url, description: encrypted_description)
 
     if @bookmark.save
       render json: @bookmark, status: :created, location: @bookmark
@@ -39,13 +55,14 @@ class BookmarksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_bookmark
-      @bookmark = Bookmark.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def bookmark_params
-      params.require(:bookmark).permit(:bookmark, :description, :user)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_bookmark
+    @bookmark = Bookmark.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def bookmark_params
+    params.require(:bookmark).permit(:url, :description, :user)
+  end
 end

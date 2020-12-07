@@ -9,7 +9,9 @@ class TodosController < ApplicationController
 
   # POST /todos
   def create
-    @todo = current_user.todos.create!(title: todo_params['title'], done: false, created_by: current_user.id)
+    title = todo_params['title']
+    # encrypted_title = encrypt_and_sign(title)
+    @todo = current_user.todos.create!(title: title, done: false, created_by: current_user.id)
     json_response(@todo, :created)
   end
 

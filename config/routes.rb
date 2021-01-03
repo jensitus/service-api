@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   resources :bookmarks
   post 'users/check_auth_token', to: 'users#check_auth_token'
+  post 'users/check_token_outside', to: 'users#check_token_outside'
   resources :todos do
     resources :items
   end

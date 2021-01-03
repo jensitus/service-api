@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: :show
-  skip_before_action :authorize_request, only: [:create, :check_auth_token]
+  skip_before_action :authorize_request, only: [:create, :check_auth_token, :check_token_outside]
   # before_action :check_auth_token, only: :check_auth_token
 
   # GET /users
@@ -51,6 +51,19 @@ class UsersController < ApplicationController
   def check_auth_token
     token_valid = JsonWebToken.decode auth_token_params
     json_response(token_valid)
+  end
+
+  # POST /users/check_token_outside
+  def check_token_outside
+    puts '#########################'
+    puts auth_token_params.inspect
+    token_valid = JsonWebToken.decode(auth_token_params)
+    puts token_valid.inspect
+    if token_valid
+      puts token_valid.inspect
+    else
+      'mist'
+    end
   end
 
   private

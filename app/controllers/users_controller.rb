@@ -56,11 +56,10 @@ class UsersController < ApplicationController
   # POST /users/check_token_outside
   def check_token_outside
     puts '#########################'
-    puts auth_token_params.inspect
     token_valid = JsonWebToken.decode(auth_token_params)
     puts token_valid.inspect
     if token_valid
-      puts token_valid.inspect
+      json_response token_valid
     else
       'mist'
     end

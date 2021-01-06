@@ -85,7 +85,7 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.4)
     byebug (11.1.3)
-    capistrano (3.14.1)
+    capistrano (3.15.0)
       airbrussh (>= 1.0.0)
       i18n
       rake (>= 10.0.0)
@@ -117,7 +117,7 @@ GEM
     ffi (1.13.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    i18n (1.8.5)
+    i18n (1.8.7)
       concurrent-ruby (~> 1.0)
     jmespath (1.4.0)
     jwt (2.2.2)
@@ -182,7 +182,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (~> 1.0)
-    rake (13.0.1)
+    rake (13.0.3)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -234,7 +234,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk-s3
-  bcrypt (~> 3.1.7)
+  bcrypt (~> 3.1.16)
   bootsnap (>= 1.1.0)
   byebug
   capistrano
@@ -249,7 +249,7 @@ DEPENDENCIES
   letter_opener
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
-  puma (~> 3.12)
+  puma (~> 3.1)
   rack-cors
   rails (~> 6.0)
   rspec-rails

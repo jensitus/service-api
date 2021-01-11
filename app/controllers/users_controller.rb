@@ -49,6 +49,9 @@ class UsersController < ApplicationController
 
   # POST /users/check_auth_token
   def check_auth_token
+    puts '####'
+    donner_auth =  request.headers['Authorization'].inspect
+    puts auth_token_params.inspect
     token_valid = JsonWebToken.decode auth_token_params
     json_response(token_valid)
   end
@@ -80,7 +83,11 @@ class UsersController < ApplicationController
   end
 
   def auth_token_params
-    params[:token]
+    puts '-------------------'
+    puts params.inspect
+    puts params[:access_token].inspect
+    puts '-------------------'
+    params[:access_token]
   end
 
   def check_the_auth_token(token)

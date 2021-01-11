@@ -9,10 +9,13 @@ class AuthenticationController < ApplicationController
     u = {
         id: user.id,
         name: user.name,
-        email: user.email
+        email: user.email,
+        access_token: auth_token
     }
     puts user.inspect
-    json_response(auth_token: auth_token, user: u)
+    jr = json_response(user: u)
+    puts jr.inspect
+    jr
   end
 
   private

@@ -18,6 +18,7 @@ gem 'bcrypt', '~> 3.1.16'
 gem 'jwt'
 gem "aws-sdk-s3", require: false
 
+
 # gem 'carrierwave'
 # gem 'mini_magick'
 
